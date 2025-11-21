@@ -1,147 +1,295 @@
-<<<<<<< HEAD
-# Deepfake detection using Deep Learning (ResNext and LSTM)
+# Deepfake Detection System - Complete Modern Implementation
 
+A state-of-the-art deepfake detection system with a modern, responsive frontend and scalable backend architecture.
 
-## 1. Introduction
-This projects aims in detection of video deepfakes using deep learning techniques like ResNext and LSTM. We have achived deepfake detection by using transfer learning where the pretrained ResNext CNN is used to obtain a feature vector, further the LSTM layer is trained using the features. 
+## 🎯 Project Overview
 
+This project has been completely modernized with:
+- **Next.js 14** frontend with TypeScript and Tailwind CSS
+- **FastAPI** backend for high-performance ML inference
+- **Vercel-ready** deployment configuration
+- **Modern UI/UX** with glassmorphism design and smooth animations
+- **Responsive design** that works on all devices
 
-## 2. Directory Structure
-For ease of understanding the project is structured in below format
+## 🏗️ New Architecture
+
 ```
-Deepfake_detection_using_deep_learning
-    |
-    |--- Django Application
-    |--- Model Creation
-    |--- Documentaion
+├── app/                    # Next.js App Router
+│   ├── api/               # API routes (bridge functions)
+│   ├── globals.css        # Global styles
+│   ├── layout.tsx         # Root layout
+│   └── page.tsx           # Main page
+├── api/                   # FastAPI backend
+│   ├── main.py           # FastAPI application
+│   └── requirements.txt  # Python dependencies
+├── public/               # Static assets
+├── package.json          # Node.js dependencies
+├── vercel.json          # Vercel configuration
+└── README.md            # This file
 ```
-1. Django Application 
-   - This directory consists of the django made application of our work. Where a user can upload the video and submit it to the model for prediction. The trained model performs the prediction and the result is displayed on the screen.
-2. Model Creation
-   - This directory consists of the step by step process of creating and training a deepfake detection model using our approach.
-3. Documentation
-   - This directory consists of all the documentation done during the project
 
-## 3. Our Results
+## 🚀 Quick Start
 
-| Model Name | No of videos | No of Frames | Accuracy |
-|------------|--------------|--------------|----------|
-|model_84_acc_10_frames_final_data.pt |6000 |10 |84.21461|
-|model_87_acc_20_frames_final_data.pt | 6000 |20 |87.79160|
-|model_89_acc_40_frames_final_data.pt | 6000| 40 |89.34681|
-|model_90_acc_60_frames_final_data.pt | 6000| 60 |90.59097 |
-|model_91_acc_80_frames_final_data.pt | 6000 | 80 | 91.49818 |
-|model_93_acc_100_frames_final_data.pt| 6000 | 100 | 93.58794|
+### Prerequisites
+- Node.js 18+
+- Python 3.8+
+- Git
 
+### Setup (Automated)
+```bash
+chmod +x setup.sh
+./setup.sh
+```
 
+### Setup (Manual)
 
-## 4. We welcome Open Source Contribution. 
-### Below are the some changes that can be applied to the project. New Ideas will be appreciated.
-- [ ] Deploying the applications in free cloud 
-- [ ] Creating open source API for detection
-- [ ] Batch processing of entire video instead of processing first 'x' frames.
-- [ ] Optimizing the code for faster execution.
-#### Completed 
-- [X] Dockerizing the app
-- [X] Enabling working of project on Non Cuda Computers. i.e on normal or AMD GPUs
+1. **Install frontend dependencies**
+   ```bash
+   npm install
+   ```
 
-# 🚀 Deepfake Video Detection System
+2. **Setup backend**
+   ```bash
+   cd api
+   python3 -m venv venv
+   source venv/bin/activate  # Windows: venv\Scripts\activate
+   pip install -r requirements.txt
+   cd ..
+   ```
+
+3. **Create environment files**
+   ```bash
+   # Frontend (.env.local)
+   NEXT_PUBLIC_API_URL=http://localhost:8000
+   DJANGO_API_URL=http://localhost:8000
+   
+   # Backend (api/.env)
+   DEBUG=True
+   SECRET_KEY=your-secret-key-here
+   ```
+
+4. **Run the applications**
+   ```bash
+   # Terminal 1: Backend
+   cd api && source venv/bin/activate && python main.py
+   
+   # Terminal 2: Frontend
+   npm run dev
+   ```
+
+5. **Open http://localhost:3000**
+
+## 🎨 Frontend Features
+
+### Modern UI Components
+- **Glassmorphism Design**: Frosted glass effects with backdrop blur
+- **Gradient Backgrounds**: Dynamic purple/pink gradients
+- **Smooth Animations**: Framer Motion for micro-interactions
+- **Responsive Layout**: Mobile-first design approach
+
+### Key Features
+- **Drag & Drop Upload**: Intuitive video file upload
+- **Real-time Preview**: Video preview before processing
+- **Progress Indicators**: Visual feedback during processing
+- **Interactive Results**: Detailed analysis visualization
+- **Confidence Scores**: Clear result presentation
+
+### Technology Stack
+- **Next.js 14** with App Router
+- **TypeScript** for type safety
+- **Tailwind CSS** for styling
+- **Framer Motion** for animations
+- **React Dropzone** for file uploads
+- **React Player** for video playback
+- **Lucide React** for icons
+
+## 🔧 Backend Features
+
+### FastAPI Implementation
+- **High Performance**: ASGI server with Uvicorn
+- **Type Safety**: Full type hints
+- **Auto Documentation**: OpenAPI/Swagger UI
+- **CORS Support**: Cross-origin requests
+- **Error Handling**: Comprehensive error responses
+
+### API Endpoints
+- `POST /api/predict/` - Video analysis
+- `GET /api/static/{file_path}` - Static file serving
+- `GET /docs` - API documentation
+
+### ML Integration Ready
+The backend is structured to easily integrate your existing PyTorch models:
+- ResNeXt + LSTM architecture support
+- Face detection and cropping
+- Frame extraction and preprocessing
+- Model inference pipeline
+
+## 🚀 Deployment
+
+### Vercel Deployment (Frontend)
+
+1. **Connect GitHub Repository** to Vercel
+2. **Configure Build Settings**:
+   - Framework: Next.js
+   - Build Command: `npm run build`
+   - Output Directory: `.next`
+
+3. **Set Environment Variables**:
+   ```
+   NEXT_PUBLIC_API_URL=https://your-backend-url.com
+   DJANGO_API_URL=https://your-backend-url.com
+   ```
+
+4. **Deploy** - Vercel handles the rest!
+
+### Backend Deployment Options
+
+#### Option 1: Railway (Recommended)
+```bash
+# Deploy to Railway
+railway login
+railway init
+railway up
+```
+
+#### Option 2: DigitalOcean App Platform
+1. Create new app
+2. Connect GitHub repo
+3. Use Dockerfile configuration
+4. Deploy
+
+#### Option 3: Vercel Serverless
+Move API code to `api/` directory and deploy as serverless functions
+
+## 📱 Responsive Design
+
+### Breakpoints
+- **Mobile**: < 768px - Single column layout
+- **Tablet**: 768px - 1024px - Two columns
+- **Desktop**: > 1024px - Full multi-column
+
+### Mobile Optimizations
+- Touch-friendly interface
+- Optimized file uploads
+- Responsive video player
+- Adaptive typography
+
+## 🔒 Security Features
+
+### Frontend Security
+- File type validation
+- Size limit enforcement
+- XSS protection
+- CSRF protection
+
+### Backend Security
+- CORS configuration
+- File type validation
+- Temporary file cleanup
+- Input sanitization
+
+## 📊 Performance Optimizations
+
+### Frontend
+- Code splitting
+- Image optimization
+- Lazy loading
+- Bundle optimization
+
+### Backend
+- Async processing
+- Efficient file handling
+- Memory optimization
+- Fast inference
+
+## 🎯 Key Improvements Over Original
+
+### UI/UX Enhancements
+✅ Modern, professional design  
+✅ Glassmorphism effects  
+✅ Smooth animations  
+✅ Better visual hierarchy  
+✅ Mobile-responsive layout  
+✅ Improved accessibility  
+
+### Technical Improvements
+✅ TypeScript for type safety  
+✅ Next.js App Router  
+✅ Serverless-ready architecture  
+✅ Better error handling  
+✅ Performance optimizations  
+✅ Modern development workflow  
+
+### Deployment Benefits
+✅ Vercel-native deployment  
+✅ Global CDN distribution  
+✅ Automatic HTTPS  
+✅ Custom domain support  
+✅ Edge functions support  
+✅ Built-in analytics  
+
+## 🔍 Testing
+
+### Frontend Testing
+```bash
+npm run lint
+npm run build
+```
+
+### Backend Testing
+```bash
+cd api
+python -m pytest
+```
+
+### Integration Testing
+1. Test file upload functionality
+2. Verify API connectivity
+3. Check ML processing pipeline
+4. Validate result display
+
+## 📈 Monitoring & Analytics
+
+### Frontend
+- Vercel Analytics
+- Error tracking
+- Performance metrics
+
+### Backend
+- Request logging
+- Error monitoring
+- Performance metrics
+- Model inference time
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create feature branch: `git checkout -b feature/amazing-feature`
+3. Commit changes: `git commit -m 'Add amazing feature'`
+4. Push to branch: `git push origin feature/amazing-feature`
+5. Open Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🆘 Support
+
+For support and questions:
+- 📧 Create an issue on GitHub
+- 📖 Check the documentation
+- 🚀 Review deployment guide
+- 🔍 Check troubleshooting section
 
 ---
 
-## ⚠️ Project Overview  
-- Addresses the threat of **deepfake technology** undermining information integrity and social trust.  
-- Deepfakes manipulate faces, voices, or expressions, spreading misinformation and fraud.  
-- Example: Fake videos of public figures like Narendra Modi singing.
+## 🎉 Ready to Deploy!
 
----
+Your deepfake detection system is now:
+- ✅ Modern and professional
+- ✅ Mobile-responsive
+- ✅ Vercel-ready
+- ✅ Production-optimized
+- ✅ Secure and scalable
 
-## 🎯 Goal  
-- Build a system to classify videos as **Real** or **Fake**.  
-- Utilizes a **hybrid deep learning** model: CNN + RNN + ANN.
-
----
-
-## 📋 Scope & Features  
-- Video input preprocessing with **OpenCV**.  
-- Face extraction via **MTCNN** and **Haar Cascade**.  
-- Spatial features extracted by **XceptionNet (CNN)**.  
-- Temporal analysis with **RNN (LSTM/GRU)**.  
-- Final classification by **ANN** with confidence scoring.  
-- User-friendly web interface: **HTML, CSS, JS + Flask/FastAPI backend**.  
-- Focus: Video deepfake detection; excludes audio detection and big social media integration in v1.
-
----
-
-## ⚙️ Assumptions & Constraints  
-- Dataset from **Kaggle Deepfake Detection Challenge**.  
-- GPU-enabled environment for training.  
-- Supports short video uploads (≤1 min).  
-- 10-week development time, newcomer frontend/backend skills.
-
----
-
-## ✅ Acceptance Criteria  
-- Predicts Real or Fake with ≥ **80% confidence**.  
-- Achieves ≥ **85% accuracy** on the test set.
-
----
-
-## 👫 Team & Roles  
-- **Shailesh Gole:** Team Lead, Data Scientist (Model design, training).  
-- **Saumya Singh:** Frontend Developer (UI design).  
-- **Urvashi Agrawal:** Backend Lead (API, model integration).
-
----
-
-## 📅 Development Plan  
-- Weeks 1-8: From dataset prep → CNN → RNN → ANN → Backend API → Frontend UI → Testing & Demo.  
-- Final delivery targeted: **October 26, 2025**.
-
----
-
-## 👥 Users & UX  
-- Target users: Researchers, Students.  
-- Simple workflow: Upload video → System processes → Detects → Displays result + confidence.  
-- Emphasis on fast results within **1 minute**.
-
----
-
-## 🏆 Competitors & Differentiators  
-| Competitor              | Strengths               | Weaknesses              | Our Advantage                |
-|------------------------|------------------------|------------------------|------------------------------|
-| Microsoft Video Authenticator | Industry backing, Real-time | Paid, Limited access      | Open educational access      |
-| Deepware Scanner          | Browser-based, Accessible | Limited accuracy          | Customizable & focused       |
-| Intel FakeCatcher         | High accuracy, Research focus | Not public                 | Educational & open platform  |
-
----
-
-## 📊 Architecture  
-- Frontend: **HTML, CSS, JavaScript**  
-- Backend: **Flask/FastAPI**  
-- Model: **CNN, RNN, ANN**  
-- Database: SQLite/MySQL for logs  
-- Libraries: TensorFlow/Keras, OpenCV
-
----
-
-## 🛠️ Testing & Quality  
-- Accuracy goal: 85%  
-- Unit testing for model & preprocessing  
-- API testing with Postman  
-- Manual UI testing
-
----
-
-## ⚠️ Risks & Mitigation  
-- GPU unavailability → Use Kaggle/Colab GPUs  
-- Overfitting → Data augmentation, dropout  
-- Slow inference → Optimize preprocessing
-
----
-
-## 🚀 Delivery Plan  
-- Demo release: October 26, 2025  
-- CICD via GitHub  
-- Weekly standups & mentor feedback
-
+**Deploy to Vercel now and share your amazing deepfake detection app with the world!** 🚀
