@@ -9,12 +9,13 @@
 - `/home/engine/project/.env.example` - Frontend environment variables
 - `/home/engine/project/api/.env.example` - Backend environment variables
 
-### 2. Inconsistent Environment Variable References
-**Problem**: `vercel.json` referenced `@api_url` but code used different variable names.
+### 2. Environment Variable Secret References
+**Problem**: `vercel.json` used Vercel secret syntax (`@secret_name`) causing deployment errors when secrets don't exist.
 
-**Solution**: Updated `vercel.json` to use consistent variable names:
-- `NEXT_PUBLIC_API_URL` → `@next_public_api_url`
-- `DJANGO_API_URL` → `@django_api_url`
+**Solution**: Removed secret references from `vercel.json`:
+- Environment variables should be set directly in Vercel dashboard
+- This provides more flexibility for different environments
+- No need to create Vercel secrets for non-sensitive public API URLs
 
 ### 3. Next.js Configuration Issues
 **Problem**: Hardcoded localhost rewrites would break in production.
