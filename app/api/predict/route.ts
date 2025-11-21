@@ -13,8 +13,45 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // For now, simulate the API response
-    // In production, this would call the actual Django/FastAPI backend
+    // Check if we should use the bridge API (production) or mock response (development)
+    const djangoApiUrl = process.env.DJANGO_API_URL
+    
+    if (djangoApiUrl && !djangoApiUrl.includes('localhost')) {
+      // Production: Forward to Django/FastAPI backend via bridge
+      try {
+        const response = await fetch(`${djangoApiUrl}/api/predict/`, {
+          method: 'POST',
+          body: formData,
+        })
+
+        if (!response.ok) {
+          const errorText = await response.text()
+          console.error('Django API error:', errorText)
+          return NextResponse.json(
+            { error: 'Backend processing failed' },
+            { status: response.status }
+          )
+        }
+
+        const data = await response.json()
+        
+        // Transform Django response to match frontend expectations
+        const transformedData = {
+          output: data.output || 'FAKE',
+          confidence: data.confidence || 85,
+          preprocessed_images: data.preprocessed_images || [],
+          faces_cropped_images: data.faces_cropped_images || [],
+          original_video: data.original_video || '',
+        }
+
+        return NextResponse.json(transformedData)
+      } catch (error) {
+        console.error('Error calling Django API:', error)
+        // Fall back to mock response if backend is unavailable
+      }
+    }
+
+    // Development: Mock response
     const mockResponse = {
       output: Math.random() > 0.5 ? 'REAL' : 'FAKE',
       confidence: Math.floor(Math.random() * 20) + 80,

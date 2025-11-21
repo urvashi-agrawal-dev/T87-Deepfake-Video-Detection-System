@@ -31,6 +31,8 @@ The system consists of:
    DJANGO_API_URL=https://your-backend-api.com
    ```
 
+   **Important**: Make sure to set both variables with your actual backend API URL. The `DJANGO_API_URL` is used by the API routes to communicate with your backend service.
+
 4. **Deploy** - Vercel will automatically build and deploy
 
 ### 2. Deploy Backend API
@@ -104,19 +106,24 @@ The `vercel.json` file includes:
 
 ### Common Issues
 
-1. **CORS Errors**
+1. **Environment Variable Errors**
+   - Ensure both `NEXT_PUBLIC_API_URL` and `DJANGO_API_URL` are set in Vercel dashboard
+   - Verify the URLs point to your deployed backend (not localhost)
+   - Check that variable names match exactly (case-sensitive)
+
+2. **CORS Errors**
    - Check backend CORS configuration
    - Verify frontend API URL
 
-2. **Build Failures**
+3. **Build Failures**
    - Check `npm install` logs
    - Verify TypeScript errors
 
-3. **API Timeouts**
+4. **API Timeouts**
    - Increase function timeout in `vercel.json`
    - Optimize ML processing time
 
-4. **File Upload Issues**
+5. **File Upload Issues**
    - Check file size limits
    - Verify multipart form handling
 

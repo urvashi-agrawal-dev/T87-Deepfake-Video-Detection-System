@@ -57,12 +57,22 @@ chmod +x setup.sh
    cd ..
    ```
 
-3. **Create environment files**
+3. **Configure environment variables**
+   ```bash
+   # Copy example files
+   cp .env.example .env.local
+   cp api/.env.example api/.env
+
+   # Edit the files with your configuration
+   # For detailed instructions, see ENV_SETUP.md
+   ```
+
+   **Quick setup for development:**
    ```bash
    # Frontend (.env.local)
    NEXT_PUBLIC_API_URL=http://localhost:8000
    DJANGO_API_URL=http://localhost:8000
-   
+
    # Backend (api/.env)
    DEBUG=True
    SECRET_KEY=your-secret-key-here
@@ -260,6 +270,28 @@ python -m pytest
 - Error monitoring
 - Performance metrics
 - Model inference time
+
+## 🚀 Deployment
+
+### Quick Deploy to Vercel
+
+1. **Environment Variables** (Required for production)
+   - See [ENV_SETUP.md](./ENV_SETUP.md) for detailed instructions
+   - Set in Vercel dashboard:
+     - `NEXT_PUBLIC_API_URL=https://your-backend-api.com`
+     - `DJANGO_API_URL=https://your-backend-api.com`
+
+2. **Deploy Frontend**
+   ```bash
+   # Connect to Vercel and deploy
+   vercel --prod
+   ```
+
+3. **Deploy Backend**
+   - Deploy the `api/` directory to Railway, DigitalOcean, or AWS
+   - Configure CORS to allow your Vercel domain
+
+For detailed deployment instructions, see [DEPLOYMENT.md](./DEPLOYMENT.md).
 
 ## 🤝 Contributing
 

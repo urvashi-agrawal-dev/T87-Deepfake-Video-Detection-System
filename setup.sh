@@ -27,28 +27,53 @@ pip install -r requirements.txt
 cd ..
 
 echo "🔧 Creating environment files..."
-# Create frontend env file
-cat > .env.local << EOF
+# Create frontend env file from example if it doesn't exist
+if [ ! -f .env.local ]; then
+    if [ -f .env.example ]; then
+        cp .env.example .env.local
+        echo "✅ Created .env.local from .env.example"
+    else
+        # Create frontend env file
+        cat > .env.local << EOF
 NEXT_PUBLIC_API_URL=http://localhost:8000
 DJANGO_API_URL=http://localhost:8000
 EOF
+    fi
+else
+    echo "ℹ️  .env.local already exists, skipping creation"
+fi
 
-# Create backend env file
-cat > api/.env << EOF
+# Create backend env file from example if it doesn't exist
+if [ ! -f api/.env ]; then
+    if [ -f api/.env.example ]; then
+        cp api/.env.example api/.env
+        echo "✅ Created api/.env from api/.env.example"
+    else
+        # Create backend env file
+        cat > api/.env << EOF
 DEBUG=True
 SECRET_KEY=your-secret-key-here
 ALLOWED_HOSTS=localhost,127.0.0.1
 EOF
+    fi
+else
+    echo "ℹ️  api/.env already exists, skipping creation"
+fi
 
 echo "✅ Setup complete!"
 echo ""
 echo "🎯 Next steps:"
-echo "1. Start the backend API:"
+echo "1. Review and update environment variables if needed:"
+echo "   - Frontend: .env.local"
+echo "   - Backend: api/.env"
+echo "   - See ENV_SETUP.md for detailed configuration"
+echo ""
+echo "2. Start the backend API:"
 echo "   cd api && source venv/bin/activate && python main.py"
 echo ""
-echo "2. In another terminal, start the frontend:"
+echo "3. In another terminal, start the frontend:"
 echo "   npm run dev"
 echo ""
-echo "3. Open http://localhost:3000 in your browser"
+echo "4. Open http://localhost:3000 in your browser"
 echo ""
 echo "📚 For deployment instructions, see DEPLOYMENT.md"
