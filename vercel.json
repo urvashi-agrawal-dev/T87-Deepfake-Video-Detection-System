@@ -4,10 +4,6 @@
   "installCommand": "npm install",
   "framework": "nextjs",
   "regions": ["sin1"],
-  "env": {
-    "NEXT_PUBLIC_API_URL": "@next_public_api_url",
-    "DJANGO_API_URL": "@django_api_url"
-  },
   "functions": {
     "app/api/**/*.ts": {
       "maxDuration": 30

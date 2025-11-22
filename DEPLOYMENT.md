@@ -20,18 +20,28 @@ The system consists of:
 ### 1. Deploy Frontend to Vercel
 
 1. **Connect your GitHub repository** to Vercel
+
 2. **Configure build settings**:
    - Build Command: `npm run build`
    - Output Directory: `.next`
    - Install Command: `npm install`
 
 3. **Set Environment Variables** in Vercel dashboard:
-   ```
-   NEXT_PUBLIC_API_URL=https://your-backend-api.com
-   DJANGO_API_URL=https://your-backend-api.com
-   ```
+   
+   Go to your Vercel project settings → Environment Variables and add:
+   
+   | Variable Name | Value | Environment |
+   |---------------|-------|-------------|
+   | `NEXT_PUBLIC_API_URL` | `https://your-backend-api.com` | Production, Preview, Development |
+   | `DJANGO_API_URL` | `https://your-backend-api.com` | Production, Preview, Development |
 
-   **Important**: Make sure to set both variables with your actual backend API URL. The `DJANGO_API_URL` is used by the API routes to communicate with your backend service.
+   **Important Notes**:
+   - Replace `https://your-backend-api.com` with your actual backend API URL
+   - `NEXT_PUBLIC_API_URL` must be set for the frontend to communicate with the backend
+   - `DJANGO_API_URL` is used by the Next.js API routes to communicate with your backend service
+   - Make sure to select all environments (Production, Preview, Development) for each variable
+   - Variables starting with `NEXT_PUBLIC_` are exposed to the browser
+   - Do NOT use the @ syntax (e.g., @secret_name) in the vercel.json file - set variables directly in the dashboard
 
 4. **Deploy** - Vercel will automatically build and deploy
 
@@ -107,9 +117,18 @@ The `vercel.json` file includes:
 ### Common Issues
 
 1. **Environment Variable Errors**
+   
+   **Error: "Environment Variable references Secret which does not exist"**
+   - This means the `vercel.json` file has been updated to not use secrets
+   - Go to Vercel dashboard → Project Settings → Environment Variables
+   - Add `NEXT_PUBLIC_API_URL` and `DJANGO_API_URL` directly (without @ syntax)
+   - Redeploy your application
+   
+   **Other environment variable issues:**
    - Ensure both `NEXT_PUBLIC_API_URL` and `DJANGO_API_URL` are set in Vercel dashboard
    - Verify the URLs point to your deployed backend (not localhost)
    - Check that variable names match exactly (case-sensitive)
+   - Make sure variables are set for all environments (Production, Preview, Development)
 
 2. **CORS Errors**
    - Check backend CORS configuration
