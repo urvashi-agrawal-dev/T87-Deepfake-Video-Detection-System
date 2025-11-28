@@ -1,4 +1,31 @@
 # Dependencies
+<<<<<<< HEAD
+node_modules/
+backend/venv/
+backend/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Next.js
+.next/
+out/
+build/
+dist/
+
+# Environment
+.env
+.env.local
+.env*.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+=======
 /node_modules
 /.pnp
 .pnp.js
@@ -72,6 +99,7 @@ temp_uploads/
 processed_media/
 uploaded_videos/
 uploaded_images/
+>>>>>>> backend
 
 # IDE
 .vscode/
@@ -79,5 +107,16 @@ uploaded_images/
 *.swp
 *.swo
 
+<<<<<<< HEAD
+# Temporary files
+backend/temp_uploads/
+backend/processed_media/
+backend/models/*.pt
+
+# Testing
+coverage/
+.pytest_cache/
+=======
 # OS
 Thumbs.db
+>>>>>>> backend

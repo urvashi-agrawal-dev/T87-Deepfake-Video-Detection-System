@@ -1,5 +1,21 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+<<<<<<< HEAD
+  reactStrictMode: true,
+  swcMinify: true,
+  images: {
+    domains: ['localhost', 'via.placeholder.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
+    ],
+  },
+}
+
+module.exports = nextConfig
+=======
   experimental: {
     appDir: true,
   },
@@ -21,3 +37,4 @@ const nextConfig = {
 };
 
 module.exports = nextConfig;
+>>>>>>> backend

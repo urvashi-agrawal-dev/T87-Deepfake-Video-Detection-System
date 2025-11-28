@@ -1,0 +1,12 @@
+{
+  "buildCommand": "npm run build && python -m pip install --upgrade pip setuptools wheel && cd api && pip install --prefer-binary --no-cache-dir -r requirements.txt",
+  "outputDirectory": ".next",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "regions": ["sin1"],
+  "functions": {
+    "app/api/**/*.ts": {
+      "maxDuration": 30
+    }
+  }
+}

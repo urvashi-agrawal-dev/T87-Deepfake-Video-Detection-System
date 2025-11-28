@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://backend:8000
+      - DJANGO_API_URL=http://backend:8000
+    depends_on:
+      - backend
+    networks:
+      - deepfake-network
+
+  backend:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./api:/app
+      - temp_uploads:/app/temp_uploads
+      - processed_media:/app/processed_media
+    environment:
+      - DEBUG=True
+      - SECRET_KEY=your-secret-key-here
+      - ALLOWED_HOSTS=localhost,127.0.0.1,backend
+    networks:
+      - deepfake-network
+
+volumes:
+  temp_uploads:
+  processed_media:
+
+networks:
+  deepfake-network:
+    driver: bridge
