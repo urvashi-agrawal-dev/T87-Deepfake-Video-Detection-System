@@ -1,13 +1,20 @@
+<<<<<<< HEAD
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+=======
+import './globals.css'
+import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
+>>>>>>> backend
 import { Toaster } from 'react-hot-toast'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
+<<<<<<< HEAD
   title: 'Deepfake Detection System | AI-Powered Video Analysis',
   description: 'Advanced AI-powered deepfake detection system using ResNeXt + LSTM architecture. Detect manipulated videos with 93%+ accuracy.',
   keywords: 'deepfake, detection, AI, machine learning, video analysis, fake video',
@@ -17,6 +24,10 @@ export const metadata: Metadata = {
     description: 'AI-powered deepfake detection with 93%+ accuracy',
     type: 'website',
   },
+=======
+  title: 'Deepfake Detection System',
+  description: 'Advanced AI-powered deepfake detection using deep learning',
+>>>>>>> backend
 }
 
 export default function RootLayout({
@@ -27,6 +38,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+<<<<<<< HEAD
         <div className="min-h-screen flex flex-col">
           <Navbar />
           <main className="flex-grow">
@@ -44,6 +56,13 @@ export default function RootLayout({
               color: '#fff',
               border: '1px solid rgba(255, 255, 255, 0.2)',
             },
+=======
+        {children}
+        <Toaster
+          position="top-right"
+          toastOptions={{
+            className: 'glass-effect text-white',
+>>>>>>> backend
             success: {
               iconTheme: {
                 primary: '#10b981',
@@ -61,4 +80,8 @@ export default function RootLayout({
       </body>
     </html>
   )
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> backend
