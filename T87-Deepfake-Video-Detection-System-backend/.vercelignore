@@ -1,0 +1,8 @@
+Django_Application
+Model Creation
+model.ipynb
+.git
+.gitignore
+db.sqlite3
+.env
+*.md

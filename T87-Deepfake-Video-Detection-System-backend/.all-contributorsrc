@@ -1,0 +1,39 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "commitType": "docs",
+  "commitConvention": "angular",
+  "contributors": [
+    {
+      "login": "urvashi-agrawal-dev",
+      "name": "Urvashi Agrawal",
+      "profile": "https://github.com/urvashi-agrawal-dev",
+      "contributions": [
+        "projectManagement"
+      ]
+    },
+    {
+      "login": "saumya",
+      "name": "saumya",
+      "contributions":[
+        "ui ux"
+      ]
+    },
+    {
+      "login": "shailesh",
+      "name": "shailesh",
+      "contributions": [
+        "maintenance"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "skipCi": true,
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "projectName": "Deepfake_detection_using_deep_learning",
+  "projectOwner": "urvashi-agrawal-dev"
+}
